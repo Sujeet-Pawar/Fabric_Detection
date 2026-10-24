@@ -1,0 +1,30 @@
+{
+  "classes": [
+    "Abaca",
+    "Cotton",
+    "Hessian",
+    "Linen",
+    "Silk",
+    "Wool",
+    "canvas",
+    "cord",
+    "denim",
+    "fleece",
+    "rfd",
+    "twill"
+  ],
+  "img_size": [
+    224,
+    224
+  ],
+  "test_accuracy": 0.995475113122172,
+  "format": "torchscript",
+  "normalisation": "mean_std_imagenet",
+  "unsure_threshold": 0.6,
+  "unknown_threshold": 12.758,
+  "kmeans_k": 40,
+  "rf_test_accuracy": 0.9977,
+  "rf_val_accuracy": 1.0,
+  "better_model": "randomforest",
+  "cnn_test_accuracy": 0.9955
+}

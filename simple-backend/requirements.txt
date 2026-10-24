@@ -1,0 +1,9 @@
+# FABRIC IQ simple track -- server + notebook dependencies.
+# The notebook additionally uses scikit-learn and matplotlib (listed below).
+tensorflow
+numpy
+pillow
+scikit-learn
+matplotlib
+flask
+flask-cors

@@ -1,0 +1,67 @@
+# ============================================================
+#  .gitignore  --  FabricNet project (ML backend + Vite frontend)
+#
+#  IMPORTANT: trained model artifacts are INTENTIONALLY TRACKED
+#  so a fresh clone keeps full accuracy:
+#    simple-backend/model/            (fabricnet_simple.ts,
+#                                      fabricnet_embed.ts,
+#                                      kmeans_centroids.npy,
+#                                      labels.json)
+#    simple-backend/model_12class_backup/  (incl. randomforest.joblib)
+#  Do NOT add patterns like *.ts, *.npy, *.joblib, *.h5, *.pkl
+#  -- they would silently break the model.
+# ============================================================
+
+# ---------- Python ----------
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+build/
+dist/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+
+# ---------- Node / Vite frontend ----------
+node_modules/
+frontend-simple/dist/
+.vite/
+*.tsbuildinfo
+
+# ---------- Secrets & local config ----------
+.env
+.env.*
+!.env.example
+*.local
+
+# ---------- Logs ----------
+*.log
+*.err.log
+nohup.out
+
+# ---------- Jupyter notebooks ----------
+.ipynb_checkpoints/
+
+# ---------- Datasets (too large for GitHub) ----------
+# fabric.tar.gz alone is ~13 GB -- GitHub rejects files >100 MB.
+# Extracted dataset folders stay local; small zip archives are kept.
+ml/datasets/*
+!ml/datasets/*.zip
+
+# ---------- OS / editor junk ----------
+.DS_Store
+Thumbs.db
+desktop.ini
+.idea/
+.vscode/
+*.swp
+*~

@@ -1,0 +1,76 @@
+{
+  "classes": [
+    "Cotton",
+    "Linen",
+    "Silk",
+    "Wool",
+    "cord",
+    "denim",
+    "unknown"
+  ],
+  "fabric_classes": [
+    "Cotton",
+    "Linen",
+    "Silk",
+    "Wool",
+    "cord",
+    "denim"
+  ],
+  "unknown_class": "unknown",
+  "img_size": [
+    224,
+    224
+  ],
+  "test_accuracy": 0.9854368932038835,
+  "format": "torchscript",
+  "normalisation": "mean_std_imagenet",
+  "unsure_threshold": 0.6,
+  "unknown_threshold": 16.5339,
+  "kmeans_k": 40,
+  "cnn_test_accuracy": 0.9854,
+  "better_model": "cnn",
+  "care": {
+    "Cotton": [
+      "Machine wash warm or cool with mild detergent; separate lights and darks",
+      "Tumble dry low and remove while slightly damp to avoid deep wrinkles",
+      "Iron damp on medium-high heat; use steam for stubborn creases",
+      "Store folded in a dry drawer; cotton breathes, no need for plastic bags",
+      "Treat stains promptly with cold water -- hot water sets many stains"
+    ],
+    "Linen": [
+      "Hand wash or gentle machine cycle in cool water with mild detergent",
+      "Line dry or dry flat; tumble heat crisps and shrinks linen fibres",
+      "Iron while DAMP on high heat with steam -- dry linen is hard to press",
+      "Store folded in a breathable cotton bag; never sealed plastic",
+      "Expect natural softening with every wash -- that is the fabric aging well"
+    ],
+    "Silk": [
+      "Hand wash cold with a few drops of mild detergent, or dry clean",
+      "Never wring or twist -- roll in a towel to blot water out",
+      "Dry flat away from direct sunlight; sun bleaches and weakens silk",
+      "Iron inside-out on the lowest heat setting, barely touching",
+      "Store folded in breathable cloth; keep away from rough surfaces that snag"
+    ],
+    "Wool": [
+      "Hand wash cold or use the wool/machine cycle with wool detergent",
+      "Never hang wet wool -- dry flat on a towel to keep the shape",
+      "No hot iron; press with a steam cloth or use a garment steamer",
+      "Store folded with cedar blocks or lavender sachets to repel moths",
+      "Air garments out between wears instead of washing after every use"
+    ],
+    "cord": [
+      "Machine wash cool on gentle, inside-out to protect the rib pile",
+      "Skip fabric softener -- it flattens the characteristic ribs",
+      "Air dry; dryer heat can crush and crease the corduroy ribs",
+      "Brush the ribs gently with a soft brush once dry to lift the pile",
+      "Iron on the reverse side at low heat; never press directly on the ribs"
+    ],
+    "denim": [
+      "Wash cold, inside-out, and only when genuinely needed (rare washing keeps colour)",
+      "Spot-clean small marks instead of a full wash",
+      "Air dry always -- dryer heat shrinks denim and fades the indigo",
+      "Fold denim, or hang it by the hem to avoid crease lines",
+      "Turn inside-out before washing to protect seams and outer colour"
+    ]
+  }
+}
