@@ -14,15 +14,22 @@ export default function App() {
   const [dragging, setDragging] = useState(false)
   const inputRef = useRef(null)
 
-  useEffect(() => {
+  // Model info (both accuracies) is re-fetched on mount AND after every
+  // prediction, so the comparison is correct for each test case even if the
+  // backend was restarted with a newly trained model.
+  const loadModelInfo = useCallback(() => {
     fetch(API + '/api/health')
       .then((r) => r.json())
       .then((d) => {
         setBackendUp(true)
         setModelInfo(d)
       })
-    .catch(() => setBackendUp(false))
+      .catch(() => setBackendUp(false))
   }, [])
+
+  useEffect(() => {
+    loadModelInfo()
+  }, [loadModelInfo])
 
   const pickFile = useCallback((f) => {
     if (!f) return
@@ -63,6 +70,7 @@ export default function App() {
       )
     } finally {
       setLoading(false)
+      loadModelInfo()   // refresh the accuracy comparison for this test case
     }
   }
 
@@ -90,9 +98,6 @@ export default function App() {
     winner === 'randomforest'
       ? 'Random Forest'
       : result && result.rf ? 'CNN (ResNet18)' : 'CNN (ResNet18)'
-  const overallWinner = modelInfo && modelInfo.better_model
-    ? (modelInfo.better_model === 'randomforest' ? 'Random Forest' : 'CNN (ResNet18)')
-    : null
   // Count only the TRAINED FABRICS (the 'unknown' rejection class is not a fabric).
   const unknownName = modelInfo && modelInfo.unknown_class ? modelInfo.unknown_class : 'unknown'
   const trained = modelInfo && Array.isArray(modelInfo.fabric_classes)
@@ -160,12 +165,46 @@ export default function App() {
         {result && (
           <section className="result">
             {result.rf && (
-              <div className="model-verdict">
-                🏆 Higher confidence on this photo: <b>{winnerLabel}</b>
-                <span className="model-scores">
-                  CNN {Math.round((result.cnn ? result.cnn.confidence : result.confidence) * 100)}%
-                  {' · '}RF {Math.round(result.rf.confidence * 100)}%
-                </span>
+              <div className="model-compare photo">
+                <h3>This photo — confidence per model</h3>
+                {[
+                  {
+                    key: 'cnn',
+                    name: 'CNN (ResNet18)',
+                    conf: result.cnn ? result.cnn.confidence : result.confidence,
+                    fabric: result.cnn ? result.cnn.fabric : result.fabric,
+                  },
+                  {
+                    key: 'rf',
+                    name: 'Random Forest',
+                    conf: result.rf.confidence,
+                    fabric: result.rf.fabric,
+                  },
+                ].map((m) => (
+                  <div className="compare-row" key={m.key}>
+                    <span className="compare-name">{m.name}</span>
+                    <span className="compare-track">
+                      <span
+                        className={'compare-fill' + (m.key === 'rf' ? ' alt' : '')}
+                        style={{ width: Math.round(m.conf * 100) + '%' }}
+                      />
+                    </span>
+                    <span className="compare-acc">{Math.round(m.conf * 100)}%</span>
+                    <span className="compare-badge">{winner === m.key ? '✓ used' : ''}</span>
+                  </div>
+                ))}
+                <p className="compare-note">
+                  🏆 Higher confidence on this photo: <b>{winnerLabel}</b> — the answer below comes
+                  from it.
+                  {result.cnn &&
+                    result.rf &&
+                    result.cnn.fabric !== result.rf.fabric && (
+                      <>
+                        {' '}The models disagree: CNN says <b>{result.cnn.fabric}</b>, RF says{' '}
+                        <b>{result.rf.fabric}</b>.
+                      </>
+                    )}
+                </p>
               </div>
             )}
             {unknown ? (
@@ -263,17 +302,6 @@ export default function App() {
           </section>
         )}
 
-        {overallWinner && (
-          <div className="model-verdict overall">
-            Overall accuracy winner: <b>{overallWinner}</b>
-            {modelInfo.cnn_test_accuracy != null && modelInfo.rf_test_accuracy != null && (
-              <span className="model-scores">
-                CNN {Math.round(modelInfo.cnn_test_accuracy * 100)}%
-                {' · '}RF {Math.round(modelInfo.rf_test_accuracy * 100)}%
-              </span>
-            )}
-          </div>
-        )}
       </main>
       <footer>Trained in the notebook · ml/notebooks/fabric_classifier_simple.ipynb</footer>
     </div>

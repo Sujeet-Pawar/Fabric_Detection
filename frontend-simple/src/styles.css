@@ -299,6 +299,88 @@ button:disabled {
   font-size: 13px;
 }
 
+.model-compare {
+  margin-top: 18px;
+  padding: 14px 16px;
+  border-radius: 12px;
+  background: rgba(124, 108, 240, 0.08);
+  border: 1px solid rgba(124, 108, 240, 0.35);
+  text-align: left;
+}
+
+.model-compare h3 {
+  margin: 0 0 12px;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--muted);
+}
+
+.compare-row {
+  display: grid;
+  grid-template-columns: 120px 1fr 48px 64px;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+  font-size: 14px;
+}
+
+.compare-name {
+  font-weight: 600;
+}
+
+.compare-track {
+  height: 10px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.12);
+  overflow: hidden;
+}
+
+.compare-fill {
+  display: block;
+  height: 100%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--accent), var(--accent-2));
+  transition: width 0.6s ease;
+}
+
+.compare-fill.alt {
+  background: linear-gradient(90deg, #22c55e, #86efac);
+}
+
+.compare-acc {
+  text-align: right;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.compare-badge {
+  font-size: 12px;
+  color: var(--accent-2);
+  white-space: nowrap;
+}
+
+.compare-note {
+  margin: 6px 0 0;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+/* per-photo confidence block sits at the top of the result card */
+.model-compare.photo {
+  margin: 0 0 16px;
+  padding: 12px 14px;
+}
+
+.model-compare.photo .compare-row {
+  grid-template-columns: 120px 1fr 44px 56px;
+  margin-bottom: 6px;
+}
+
+.model-compare.photo .compare-note b {
+  color: var(--accent-2);
+}
+
 .alts {
   margin-top: 24px;
   text-align: left;

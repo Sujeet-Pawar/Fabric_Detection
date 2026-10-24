@@ -28,7 +28,7 @@
   "unknown_threshold": 16.5339,
   "kmeans_k": 40,
   "cnn_test_accuracy": 0.9854,
-  "better_model": "cnn",
+  "better_model": "randomforest",
   "care": {
     "Cotton": [
       "Machine wash warm or cool with mild detergent; separate lights and darks",
@@ -72,5 +72,7 @@
       "Fold denim, or hang it by the hem to avoid crease lines",
       "Turn inside-out before washing to protect seams and outer colour"
     ]
-  }
+  },
+  "rf_test_accuracy": 0.9951,
+  "rf_val_accuracy": 1.0
 }
